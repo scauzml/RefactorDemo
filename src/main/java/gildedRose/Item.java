@@ -15,13 +15,24 @@ public class Item {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
-        if (!this.name.equals(AGED_BRIE) && !this.name.equals(BACKSTAGE)) {
-            this.qualityStrategy=new isNotAgeBrieAndBacksTageStrategy();
-        }else {
-            this.qualityStrategy=new isAgeBrieOrBackStageStrategy();
+//        if (!this.name.equals(AGED_BRIE) && !this.name.equals(BACKSTAGE)) {
+//            this.qualityStrategy=new isNotAgeBrieAndBacksTageStrategy();
+//        }else {
+//            this.qualityStrategy=new isAgeBrieOrBackStageStrategy();
+//        }
+//        if (this.sellIn < 0) {
+//            this.qualityStrategy=new SellInLessZeroStrategy();
+//        }
+        if (this.name.equals(AGED_BRIE)) {
+            this.qualityStrategy=new AgedBireStrategy();
         }
-        if (this.sellIn < 0) {
-            this.qualityStrategy=new SellInLessZeroStrategy();
+        else if (this.name.equals(BACKSTAGE)) {
+            this.qualityStrategy=new BackStageStrategy();
+        }
+       else if (this.name.equals(SULFURAS)) {
+            this.qualityStrategy=new SulfurasStrategy();
+        }else {
+           this.qualityStrategy=new OtherNameStategy();
         }
 
     }
